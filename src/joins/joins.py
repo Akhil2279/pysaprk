@@ -1,14 +1,16 @@
 
 from pyspark.sql import SparkSession
+import time
 
 Spark = SparkSession.builder.appName("Joins").getOrCreate()
+print("Spark UI running at:", Spark.sparkContext.uiWebUrl)
 
-emp_df = Spark.read.option("header", True).csv("C:/Users/akhil\OneDrive\Documents\employees.csv")
+emp_df = Spark.read.option("header", True).csv("C:/Users/akhil/OneDrive/Documents/pyspark/employees.csv")
 
-#emp_df.show()
+emp_df.show()
 
 
-dept_df = Spark.read.option("header", True).csv("C:/Users/akhil\OneDrive\Documents\department.csv")
+dept_df = Spark.read.option("header", True).csv("C:/Users/akhil/OneDrive/Documents/pyspark/department.csv")
 
 #dept_df.show()
 
@@ -56,3 +58,5 @@ SELECT e.emp_name, d.dept_name
 FROM employees e
 CROSS JOIN departments d
 """).show()
+
+time.sleep(120)
